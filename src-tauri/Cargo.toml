@@ -1,0 +1,35 @@
+[package]
+name = "keyboard-farm"
+version = "0.1.0"
+description = "键盘农场 - 桌面放置类农场游戏"
+authors = ["wang"]
+edition = "2021"
+
+[lib]
+name = "keyboard_farm_lib"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[[bin]]
+name = "keyboard-farm"
+path = "src/main.rs"
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "macos-private-api"] }
+tauri-plugin-shell = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+chrono = "0.4"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+core-foundation = "0.10"
+core-graphics = "0.24"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true
