@@ -41,8 +41,11 @@ jobs:
         with:
           workspaces: src-tauri
 
+      - name: Fix npm version
+        run: npm install -g npm@10.8.2
+
       - name: Install dependencies (npm)
-        run: npm ci
+        run: npm ci || npm ci
 
       - name: Build Tauri app
         uses: tauri-apps/tauri-action@v0
