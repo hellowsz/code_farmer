@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/nicedoc/tauri/dev/core/tauri-config-schema/schema.json",
   "productName": "键盘农场",
   "version": "0.1.0",
-  "identifier": "com.keyboard-farm.app",
+  "identifier": "com.keyboard-farm.desktop",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:1420",
