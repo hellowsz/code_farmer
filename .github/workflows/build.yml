@@ -30,6 +30,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
@@ -41,21 +42,14 @@ jobs:
         with:
           workspaces: src-tauri
 
-      - name: Use stable npm
-        run: npm install -g npm@10.8.2
-
-      - name: Install dependencies
+      - name: Install npm dependencies
         run: npm ci
 
-      - name: Build Tauri (macOS)
-        if: runner.os == 'macOS'
-        shell: bash
-        run: ./node_modules/.bin/tauri build --target ${{ matrix.target }}
+      - name: Install Tauri CLI globally
+        run: npm install -g @tauri-apps/cli
 
-      - name: Build Tauri (Windows)
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: node_modules/.bin/tauri.cmd build --target ${{ matrix.target }}
+      - name: Build Tauri
+        run: tauri build --target ${{ matrix.target }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
