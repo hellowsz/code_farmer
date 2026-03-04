@@ -47,12 +47,15 @@ jobs:
       - name: Install dependencies (npm)
         run: npm ci || npm ci
 
+      - name: Install Tauri CLI
+        run: npm install -g @tauri-apps/cli@latest
+
       - name: Build Tauri app
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tauriScript: npx tauri
+          tauriScript: tauri
           tagName: ${{ github.ref_name }}
           releaseName: '键盘农场 ${{ github.ref_name }}'
           releaseBody: '键盘农场桌面应用'
