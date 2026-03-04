@@ -41,21 +41,19 @@ jobs:
         with:
           workspaces: src-tauri
 
-      - name: Fix npm version
-        run: npm install -g npm@10.8.2
-
-      - name: Install dependencies (npm)
+      - name: Install dependencies
         run: npm ci || npm ci
 
-      - name: Install Tauri CLI
-        run: npm install -g @tauri-apps/cli@latest
+      - name: Add node_modules/.bin to PATH
+        shell: bash
+        run: echo "$PWD/node_modules/.bin" >> $GITHUB_PATH
 
       - name: Build Tauri app
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tauriScript: tauri
+          tauriScript: npx tauri
           tagName: ${{ github.ref_name }}
           releaseName: '键盘农场 ${{ github.ref_name }}'
           releaseBody: '键盘农场桌面应用'
