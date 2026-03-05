@@ -30,3 +30,9 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Art pipeline raw files
+public/assets/.raw/
+
+# Competitor AVIF originals (keep PNG conversions)
+competitor/promo/*.avif

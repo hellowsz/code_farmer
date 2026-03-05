@@ -1,0 +1,27 @@
+{
+  "name": "keyboard-farm",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "art:gen": "tsx tools/art-gen/cli.ts gen",
+    "art:post": "tsx tools/art-gen/cli.ts post",
+    "art:all": "tsx tools/art-gen/cli.ts all"
+  },
+  "dependencies": {
+    "phaser": "^3.80.0",
+    "@tauri-apps/api": "^2.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vite": "^6.0.0",
+    "@tauri-apps/cli": "^2.0.0",
+    "sharp": "^0.33.0",
+    "tsx": "^4.0.0",
+    "dotenv": "^16.0.0"
+  }
+}

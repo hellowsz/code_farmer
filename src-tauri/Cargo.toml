@@ -1,0 +1,23 @@
+[package]
+name = "keyboard-farm"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "keyboard_farm_lib"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["macos-private-api", "tray-icon"] }
+tauri-plugin-shell = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rdev = "0.5"
+chrono = "0.4"
+rusqlite = { version = "0.31", features = ["bundled"] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+core-foundation = "0.10"
