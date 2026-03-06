@@ -58,7 +58,7 @@
 - [x] 1.4 编写 lib.rs（mpsc channel + 事件转发线程 + 权限轮询）
 - [x] 1.5 编写 persistence.rs（SQLite 存档）
 - [x] 1.6 编写 src/systems/InputBridge.ts（Tauri listen → 回调）
-- [ ] 1.7 编写 src/config/keyboard-layout.ts（完整键盘布局数据）
+- [x] 1.7 编写 src/config/keyboard-layout.ts（完整键盘布局数据）
 - [x] 1.8 创建临时测试 Scene（BootScene: 显示最近按键 + 辅助功能状态）
 - [x] 1.9 macOS 权限引导：检测到未授权时，画布上显示提示文字 + 点击跳转设置
 - [x] 1.10 验证：在任意 App 打字，游戏窗口实时显示按键信息
@@ -71,26 +71,19 @@
 
 目标：用 Phaser Graphics 色块代替美术素材，跑通完整种田逻辑。
 
-- [ ] 2.1 编写 src/config/crops.ts（作物配置数据）
-- [ ] 2.2 编写 src/config/animals.ts（动物配置数据）
-- [ ] 2.3 编写 src/config/constants.ts（全局常量）
-- [ ] 2.4 编写 src/systems/FarmManager.ts（不可变状态 + 核心逻辑）
+- [x] 2.1 编写 src/config/crops.ts（8种作物配置，渐进解锁）
+- [ ] 2.2 编写 src/config/animals.ts（动物配置数据）— 移至 M4
+- [x] 2.3 编写 src/config/constants.ts（全局常量）
+- [x] 2.4 编写 src/systems/FarmManager.ts（不可变状态 + 纯函数核心逻辑）
 - [ ] 2.5 为 FarmManager 编写单元测试（播种/生长/收获/功能键）
-- [ ] 2.6 编写 src/scenes/BootScene.ts（占位资源加载）
-- [ ] 2.7 编写 src/objects/KeyPlot.ts — 用 Phaser Graphics 画色块键帽：
-      - 空地 = 深棕色矩形
-      - 种植中 = 绿色矩形 + 阶段数字
-      - 成熟 = 金色矩形 + 闪烁
-      - 功能键 = 蓝色矩形 + 功能文字
-- [ ] 2.8 编写 src/scenes/FarmScene.ts — 渲染完整键盘布局：
-      - 5 行键盘网格
-      - 每个键帽是 KeyPlot 对象
-      - 按键时对应键帽缩放动画
-- [ ] 2.9 接入 FarmManager：按键 → 播种 → 生长 → 收获完整流程
-- [ ] 2.10 编写 src/ui/HUD.ts — 顶部状态栏（文字：金币、收获数、按键数、当前种子）
-- [ ] 2.11 编写 src/ui/Toast.ts — 收获时浮动 "+N 金币" 文字
-- [ ] 2.12 功能键验证：Tab 切换种子、Enter 批量收获、Shift 施肥、Space 加速
-- [ ] 2.13 端到端验证：打字 → 种满键盘 → 收获 → 金币增加 → 解锁新作物
+- [x] 2.6 编写 src/config/keyboard-layout.ts（完整 5 行键盘布局数据）
+- [x] 2.7 编写 src/objects/KeyPlot.ts — 色块键帽渲染（空地/种植/成熟 + 动画）
+- [x] 2.8 编写 src/scenes/FarmScene.ts — 键盘网格 + 输入处理 + 事件分发
+- [x] 2.9 接入 FarmManager：按键 → 播种 → 生长 → 收获完整流程
+- [x] 2.10 编写 src/ui/HUD.ts — 顶部状态栏
+- [x] 2.11 编写 src/ui/Toast.ts — 收获时浮动提示
+- [x] 2.12 功能键验证：Tab 切换种子、Enter 批量收获、Shift 施肥、Space 加速、⌫铲除
+- [x] 2.13 端到端验证：打字 → 种满键盘 → 收获 → 金币增加 → 自动解锁新作物
 
 **验收**：用色块 UI 可以完整体验种田循环，所有功能键生效。这是核心可玩性验证。
 
@@ -110,29 +103,66 @@
 
 全部通过 `npm run art:all` 或分类生成，不手动操作。
 
-- [ ] 3A.1 `npm run art:all backgrounds` — 生成背景（bg-sky, bg-grass）
-- [ ] 3A.2 `npm run art:all keys` — 生成键帽纹理 + 键盘底板（key-soil, key-grass, key-modifier, farm-board）
-- [ ] 3A.3 `npm run art:all crops` — 生成 8 种作物 Spritesheet（每种 4-6 帧）
-- [ ] 3A.4 `npm run art:all animals` — 生成 7 种动物行走 Spritesheet（每种 4 帧）
-- [ ] 3A.5 `npm run art:all buildings` — 生成 8 种装饰建筑
-- [ ] 3A.6 `npm run art:all ui` — 生成 UI 元素（coin, panel, shop-tent, tomato-timer）
-- [ ] 3A.7 `npm run art:all particles` — 生成粒子素材
-- [ ] 3A.8 审查全部素材风格一致性，微调个别 prompt 后重新生成：
-      `npm run art:all <需要重做的素材id>`
-- [ ] 3A.9 确认所有 Spritesheet 尺寸正确，帧数对齐
+- [x] 3A.1 `npm run art:all backgrounds` — 生成背景（bg-sky, bg-grass）
+- [x] 3A.2 `npm run art:all keys` — 生成键帽纹理 + 键盘底板
+- [x] 3A.3 `npm run art:all crops` — 生成 8 种作物 Spritesheet
+- [ ] 3A.4 `npm run art:all animals` — 生成 7 种动物行走 Spritesheet（移至 M4）
+- [x] 3A.5 `npm run art:all buildings` — 生成 8 种装饰建筑
+- [x] 3A.6 `npm run art:all ui` — 生成 UI 元素
+- [x] 3A.7 `npm run art:all particles` — 生成粒子素材
+- [ ] 3A.8 审查素材风格一致性，微调重新生成
+- [x] 3A.9 确认所有 Spritesheet 尺寸正确，帧数对齐
 
 ### 3B — 场景搭建
 
-- [ ] 3B.1 更新 BootScene：加载全部 Spritesheet + 创建动画定义
-- [ ] 3B.2 改造 KeyPlot：色块替换为 Sprite（key-soil / key-grass / key-modifier）
-- [ ] 3B.3 编写 src/objects/Crop.ts：作物 Sprite + 生长帧动画
-- [ ] 3B.4 改造 FarmScene 渲染层次：背景 → 底板 → 键帽 → 作物 → 装饰
-- [ ] 3B.5 编写 src/objects/Building.ts：放置装饰建筑到键盘上方区域
+- [x] 3B.1 PreloadScene：加载全部 Spritesheet + asset-keys 配置
+- [x] 3B.2 改造 KeyPlot：优先 Sprite 纹理，回退色块
+- [x] 3B.3 KeyPlot 内集成作物 Spritesheet 帧显示
+- [x] 3B.4 改造 FarmScene 渲染层次：背景 → 底板 → 键帽 → 作物 → 装饰
+- [x] 3B.5 放置装饰建筑到键盘上方区域
 - [ ] 3B.6 按键动画升级：播种翻土、生长弹跳、成熟呼吸发光、收获粒子
 - [ ] 3B.7 收获特效：金币粒子 + "+N" 浮动文字
 - [ ] 3B.8 视觉微调：间距、对齐、层次遮挡、字体
 
 **验收**：游戏外观接近指尖农场截图——键盘被农场岛包裹，上方有建筑群，作物有动画。
+
+---
+
+## M3.5 — UI/交互重做（对齐指尖农场）
+
+目标：将矩形窗口+简单网格重做为不规则透明农场岛，对齐指尖农场的视觉和交互。
+
+### 窗口层
+
+- [ ] 3.5.1 Tauri 窗口透明穿透：确保 `transparent: true` 生效，HTML/CSS body 透明
+- [ ] 3.5.2 Phaser canvas 透明：`transparent: true` + 移除 backgroundColor
+- [ ] 3.5.3 窗口拖拽：建筑区/岛边框区域 mousedown 触发 `startDragging()`
+- [ ] 3.5.4 鼠标穿透：岛外透明区域点击穿透到底层窗口
+
+### 农场岛造型
+
+- [ ] 3.5.5 用 Graphics 绘制岛轮廓：泥土色圆角不规则形状，作为键盘区背景
+- [ ] 3.5.6 岛底部截面：草地+泥土横截面效果（横版侧视图，像浮空岛）
+- [ ] 3.5.7 木栅栏围绕：键盘前方（底部）一排木栅栏
+- [ ] 3.5.8 移除矩形 HUD 栏，改用岛内嵌入式 UI（金币显示在建筑区）
+
+### 建筑群重做
+
+- [ ] 3.5.9 建筑群紧贴键盘上方，作为岛的一部分（不是浮空摆放）
+- [ ] 3.5.10 左侧装饰区：商店帐篷 + 向日葵
+- [ ] 3.5.11 右侧装饰区：水井 + 大树 + 统计/设置木牌
+- [ ] 3.5.12 中间装饰：钟楼 + 谷仓 + 邮箱 + 路灯
+
+### 按键交互升级
+
+- [ ] 3.5.13 按键计数气泡：每个键帽上方小气泡显示按键次数
+- [ ] 3.5.14 键帽按下视觉反馈优化：按下时整个键帽下沉+弹回
+
+### 缩放
+
+- [ ] 3.5.15 滚轮缩放整个农场岛（Phaser camera zoom）
+
+**验收**：农场岛浮在桌面上，周围透明。建筑群+键盘+栅栏一体化。可拖拽移动，可缩放。
 
 ---
 
@@ -239,6 +269,6 @@ M0 (骨架 + 美术管线) → M1 (键盘监听) → M2 (可玩原型)
 
 ## 当前状态
 
-**活跃里程碑**：M1 — 核心验证
-**当前进度**：M1 基本完成（1.7 keyboard-layout.ts 待实现），输入监听已验证通过
-**下一步**：完成 1.7，然后进入 M2 — 可玩原型
+**活跃里程碑**：M3.5 — UI/交互重做（对齐指尖农场）
+**当前进度**：M0-M3 基本完成，但 UI 是矩形窗口，需要重做为不规则农场岛
+**当前任务**：执行 M3.5 UI 重构

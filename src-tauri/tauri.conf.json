@@ -15,8 +15,8 @@
       {
         "label": "main",
         "title": "键盘农场",
-        "width": 960,
-        "height": 540,
+        "width": 860,
+        "height": 500,
         "resizable": true,
         "decorations": false,
         "transparent": true,
