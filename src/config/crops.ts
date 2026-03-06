@@ -57,13 +57,13 @@ export const CROPS: readonly CropConfig[] = [
     color: 0xff7518,
   },
   {
-    id: "cabbage",
-    name: "白菜",
-    emoji: "🥬",
+    id: "strawberry",
+    name: "草莓",
+    emoji: "🍓",
     pressesToGrow: 4,
     harvestGold: 40,
     unlockGold: 1000,
-    color: 0x7ccd7c,
+    color: 0xff3366,
   },
   {
     id: "eggplant",

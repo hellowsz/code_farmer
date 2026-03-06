@@ -17,6 +17,8 @@ export interface GameState {
   readonly gold: number;
   readonly totalHarvests: number;
   readonly totalKeyPresses: number;
+  readonly totalGoldEarned: number;
+  readonly cropHarvests: Readonly<Record<string, number>>; // cropId → 收获次数
   readonly selectedSeedIndex: number;  // 当前选中的种子在已解锁列表中的索引
   readonly unlockedCropIds: readonly string[];
 }
@@ -42,8 +44,10 @@ export function createInitialState(): GameState {
     gold: 0,
     totalHarvests: 0,
     totalKeyPresses: 0,
+    totalGoldEarned: 0,
+    cropHarvests: {},
     selectedSeedIndex: 0,
-    unlockedCropIds: [CROPS[0].id], // 初始只有小麦
+    unlockedCropIds: [CROPS[0].id],
   };
 }
 
@@ -119,6 +123,11 @@ export function handleKeyPress(state: GameState, keyId: string): UpdateResult {
       plots: newPlots,
       gold: newState.gold + gold,
       totalHarvests: newState.totalHarvests + 1,
+      totalGoldEarned: newState.totalGoldEarned + gold,
+      cropHarvests: {
+        ...newState.cropHarvests,
+        [plot.cropId]: (newState.cropHarvests[plot.cropId] ?? 0) + 1,
+      },
     };
     events.push({ type: "harvest", keyId, cropId: plot.cropId, gold });
   }
@@ -174,12 +183,22 @@ function handleHarvestAll(state: GameState): UpdateResult {
     }
   }
 
+  // 统计每种作物收获次数
+  let newCropHarvests = { ...state.cropHarvests };
+  for (const ev of events) {
+    if (ev.cropId) {
+      newCropHarvests = { ...newCropHarvests, [ev.cropId]: (newCropHarvests[ev.cropId] ?? 0) + 1 };
+    }
+  }
+
   return {
     state: {
       ...state,
       plots: newPlots,
       gold: state.gold + goldEarned,
       totalHarvests: state.totalHarvests + harvested,
+      totalGoldEarned: state.totalGoldEarned + goldEarned,
+      cropHarvests: newCropHarvests,
     },
     events,
   };
@@ -243,6 +262,31 @@ function handleRemoveLast(state: GameState): UpdateResult {
     state: { ...state, plots: newPlots },
     events: [{ type: "remove", keyId: lastKey }],
   };
+}
+
+// ── 直接选中某个种子 ──
+
+export function selectSeed(state: GameState, cropId: string): GameState {
+  const idx = state.unlockedCropIds.indexOf(cropId);
+  if (idx < 0) return state;
+  return { ...state, selectedSeedIndex: idx };
+}
+
+// ── 批量播种（所有空键种当前种子）──
+
+export function bulkPlant(state: GameState, allKeyIds: readonly string[]): UpdateResult {
+  const crop = getSelectedCrop(state);
+  const events: GameEvent[] = [];
+  let newPlots = { ...state.plots };
+
+  for (const keyId of allKeyIds) {
+    if (!newPlots[keyId]) {
+      newPlots = { ...newPlots, [keyId]: { cropId: crop.id, stage: 0, presses: 0 } };
+      events.push({ type: "plant", keyId, cropId: crop.id });
+    }
+  }
+
+  return { state: { ...state, plots: newPlots }, events };
 }
 
 // ── 解锁作物 ──

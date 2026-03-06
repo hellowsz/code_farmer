@@ -131,46 +131,46 @@ export const ASSET_MANIFEST: readonly AssetEntry[] = [
     framePrompts: ["站立侧面", "迈左腿", "站立侧面", "迈右腿"],
   },
 
-  // ─── 装饰建筑 ───
+  // ─── 装饰建筑（乡村田园风，精细卡通）───
   {
     id: "building-barn", category: "buildings",
-    prompt: "红色小谷仓, 尖顶, 木门, 农场建筑",
-    apiSize: "1920x1920", targetSize: [128, 128], frames: 1,
+    prompt: "乡村红色谷仓, 尖三角屋顶, 白色屋檐装饰, 大木门带X型交叉, 侧面有小窗户, 屋顶有烟囱, 田园农场风格, 正面视角, 单个建筑, 透明背景",
+    apiSize: "1920x1920", targetSize: [256, 256], frames: 1,
   },
   {
     id: "building-clock", category: "buildings",
-    prompt: "小型钟楼, 木头结构, 顶部有时钟, 农场建筑",
-    apiSize: "1920x1920", targetSize: [96, 128], frames: 1,
+    prompt: "乡村木制钟楼, 深棕色木头材质, 顶部有圆形时钟表盘, 尖顶上放着一个红色番茄装饰, 两层结构, 底部宽顶部窄, 田园农场风格, 正面视角, 单个建筑, 透明背景",
+    apiSize: "1920x1920", targetSize: [256, 256], frames: 1,
   },
   {
     id: "building-tree", category: "buildings",
-    prompt: "一棵大绿树, 圆形树冠, 粗树干, 农场大树",
-    apiSize: "1920x1920", targetSize: [128, 128], frames: 1,
+    prompt: "一棵茂密的大橡树, 巨大的圆形深绿色树冠, 多层绿色叶子, 粗壮的棕色树干, 有树洞, 树下有落叶, 田园乡村风格, 正面视角, 单棵大树, 透明背景",
+    apiSize: "1920x1920", targetSize: [256, 256], frames: 1,
   },
   {
     id: "building-fence", category: "buildings",
-    prompt: "一段木栅栏, 白色木头栅栏, 三根竖柱两根横杠",
-    apiSize: "1920x1920", targetSize: [96, 64], frames: 1,
+    prompt: "一段白色木栅栏, 尖顶竖柱, 两根横杠, 田园乡村风格, 正面视角, 透明背景",
+    apiSize: "1920x1920", targetSize: [128, 80], frames: 1,
   },
   {
     id: "building-mailbox", category: "buildings",
-    prompt: "红色邮箱, 木杆上的信箱, 农场邮箱",
-    apiSize: "1920x1920", targetSize: [48, 80], frames: 1,
+    prompt: "红色乡村邮箱, 圆弧顶, 木头邮杆, 邮箱上有小旗子, 田园农场风格, 正面视角, 单个物件, 透明背景",
+    apiSize: "1920x1920", targetSize: [128, 160], frames: 1,
   },
   {
     id: "building-well", category: "buildings",
-    prompt: "石头水井, 木桶和绳子, 农场水井",
-    apiSize: "1920x1920", targetSize: [80, 96], frames: 1,
+    prompt: "乡村石头水井, 圆形石墙, 木制支架, 挂着木桶和麻绳, 井口有清澈的水, 田园农场风格, 正面视角, 单个物件, 透明背景",
+    apiSize: "1920x1920", targetSize: [160, 160], frames: 1,
   },
   {
     id: "building-windvane", category: "buildings",
-    prompt: "风向标, 公鸡造型, 金属杆上, 农场装饰",
-    apiSize: "1920x1920", targetSize: [48, 96], frames: 1,
+    prompt: "红色大喇叭扩音器, 金属支架, 农场广播喇叭, 田园乡村风格, 正面视角, 单个物件, 透明背景",
+    apiSize: "1920x1920", targetSize: [128, 160], frames: 1,
   },
   {
     id: "building-signpost", category: "buildings",
-    prompt: "木制指路牌, 两块木板箭头, 农场标识",
-    apiSize: "1920x1920", targetSize: [64, 96], frames: 1,
+    prompt: "木制指路牌, 圆木桩底座, 两块棕色木板箭头分别指向左右, 上面写着文字, 田园农场风格, 正面视角, 单个物件, 透明背景",
+    apiSize: "1920x1920", targetSize: [128, 160], frames: 1,
   },
 
   // ─── UI 元素 ───
@@ -193,6 +193,48 @@ export const ASSET_MANIFEST: readonly AssetEntry[] = [
     id: "tomato-timer", category: "ui",
     prompt: "一个大番茄造型的计时器, 红色番茄, 顶部有绿色叶子, 正面有时钟表盘",
     apiSize: "1920x1920", targetSize: [96, 96], frames: 1,
+  },
+
+  // ─── 种子图标（商店用）───
+  {
+    id: "seed-wheat", category: "ui",
+    prompt: "一包金色小麦种子, 棕色小布袋, 上面画着麦穗图案, 游戏道具图标, 正面视角, 透明背景",
+    apiSize: "1920x1920", targetSize: [48, 48], frames: 1,
+  },
+  {
+    id: "seed-carrot", category: "ui",
+    prompt: "一包胡萝卜种子, 橙色小布袋, 上面画着胡萝卜图案, 游戏道具图标, 正面视角, 透明背景",
+    apiSize: "1920x1920", targetSize: [48, 48], frames: 1,
+  },
+  {
+    id: "seed-tomato", category: "ui",
+    prompt: "一包番茄种子, 红色小布袋, 上面画着番茄图案, 游戏道具图标, 正面视角, 透明背景",
+    apiSize: "1920x1920", targetSize: [48, 48], frames: 1,
+  },
+  {
+    id: "seed-corn", category: "ui",
+    prompt: "一包玉米种子, 黄色小布袋, 上面画着玉米图案, 游戏道具图标, 正面视角, 透明背景",
+    apiSize: "1920x1920", targetSize: [48, 48], frames: 1,
+  },
+  {
+    id: "seed-pumpkin", category: "ui",
+    prompt: "一包南瓜种子, 橙色小布袋, 上面画着南瓜图案, 游戏道具图标, 正面视角, 透明背景",
+    apiSize: "1920x1920", targetSize: [48, 48], frames: 1,
+  },
+  {
+    id: "seed-strawberry", category: "ui",
+    prompt: "一包草莓种子, 粉红色小布袋, 上面画着草莓图案, 游戏道具图标, 正面视角, 透明背景",
+    apiSize: "1920x1920", targetSize: [48, 48], frames: 1,
+  },
+  {
+    id: "seed-eggplant", category: "ui",
+    prompt: "一包茄子种子, 紫色小布袋, 上面画着茄子图案, 游戏道具图标, 正面视角, 透明背景",
+    apiSize: "1920x1920", targetSize: [48, 48], frames: 1,
+  },
+  {
+    id: "seed-sunflower", category: "ui",
+    prompt: "一包向日葵种子, 黄色小布袋, 上面画着向日葵图案, 游戏道具图标, 正面视角, 透明背景",
+    apiSize: "1920x1920", targetSize: [48, 48], frames: 1,
   },
 
   // ─── 粒子 ───

@@ -2,12 +2,15 @@
 
 // 键帽尺寸（像素）
 export const KEY_SIZE = 48;
-export const KEY_GAP = 4;
+export const KEY_GAP = 1;
 export const KEY_RADIUS = 6;
 
 // 键盘区域偏移
 export const BOARD_OFFSET_X = 30;
 export const BOARD_OFFSET_Y = 100;
+
+// 岛屿天空区高度
+export const SKY_H = 135;
 
 // 作物生长：每次按键推进 1 阶段
 export const GROWTH_STAGES = 4; // seed → sprout → grow → mature
